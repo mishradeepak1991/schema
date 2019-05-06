@@ -1,0 +1,69 @@
+<?php
+
+/**
+* Implementation of hook_install().
+*/
+function MODULE_NAME_schema() {
+// Use schema API to create database table.
+$schema['tos_accepted'] = array(
+    'fields'      => array(
+      'legal_id' => array(
+        'type'       => 'serial',
+        'unsigned'   => FALSE,        
+        'disp-width' => 10
+      ),
+      'version'  => array(
+        'type'       => 'int',
+        'unsigned'   => FALSE,
+        'disp-width' => 11
+      ),
+      'revision' => array(
+        'type'       => 'int',
+        'unsigned'   => FALSE,        
+        'disp-width' => 11
+      ),
+      'language' => array(
+        'description' => t("TODO."),
+        'type'        => 'varchar',
+        'length'      => '12',        
+      ),
+      'uid'      => array(
+        'type'       => 'int',
+        'unsigned'   => FALSE,        
+        'disp-width' => 10
+      ),
+      'accepted' => array(
+        'type'       => 'int',
+        'unsigned'   => FALSE,        
+        'disp-width' => 11
+      ),
+      'tc_id'    => array(
+        'type'       => 'int',
+        'unsigned'   => FALSE,        
+        'disp-width' => 10
+      ),
+      'app_name'    => array(
+        'type'       => 'text',
+        'unsigned'   => FALSE,        
+        'disp-width' => 10
+      ),
+    ),
+    'indexes'     => array('uid' => array('uid')),
+    'primary key' => array('legal_id'),
+  );
+return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function MODULE_NAME_install(){
+  drupal_install_schema('tos_accepted');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function MODULE_NAME_uninstall(){
+  drupal_uninstall_schema('tos_accepted');
+}
